@@ -50,12 +50,12 @@ onBeforeMount(() => {
 // 栏目
 const cates = ref<Cate[]>()
 getCate().then(res => cates.value = res.data.data)
-const cateIdsChange = (value: number[]) => {
-  if (value.length) {
-    // @ts-ignore
-    noteForm.cate_id = _.last(value)
-  }
-}
+// const cateIdsChange = (value: number[]) => {
+//   if (value.length) {
+//     // @ts-ignore
+//     noteForm.cate_id = _.last(value)
+//   }
+// }
 </script>
 
 <style scoped></style>
