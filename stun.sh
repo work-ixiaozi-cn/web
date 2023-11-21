@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd
+
 file="stun.json"
 
 # Step 1: 获取token
