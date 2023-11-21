@@ -26,4 +26,6 @@ fi
 
 git add .
 git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
+git pull origin main
+git push origin main
 echo "success!"
