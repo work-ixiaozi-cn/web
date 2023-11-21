@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file="public/stun.json"
+file="public/$(hostname).json"
 token="CmH6FDe1DR7Gr5hycfiasjFlYa7yGKpp"
 
 cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd
@@ -11,10 +11,6 @@ if [ -z "$response" ]; then
     echo "Error: Failed to fetch stun information."
     exit 1
 fi
-echo $response
-echo "====================================================="
-echo "====================================================="
-
 
 # Step 2: 解析生成stun.json文件
 echo "$response" | jq -r '.list | map({name: .Name, public: .PublicAddr})' > $file
