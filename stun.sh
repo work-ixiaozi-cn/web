@@ -2,7 +2,7 @@
 
 cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd
 
-file="stun.json"
+file="public/stun.json"
 
 # Step 1: 获取token
 token=$(curl -s -X POST -H "Content-Type: application/json" -d '{"Account":"666","Password":"666","TwoFA":""}' http://192.168.1.11:16601/api/login | jq -r '.token')
