@@ -19,14 +19,15 @@ if [ -z "$response" ]; then
     exit 1
 fi
 # Step 3: 解析生成stun.json文件
-echo "$response" | jq -r '.list | map({name: .Name, public: .PublicAddr})' > $file
+echo "$response" | jq -r '.list[] | {name: .Name, public: .PublicAddr}' > $file
 if [ ! -s "$file" ]; then
     echo "生成文件[${file}]失败."
     exit 1
 fi
-
+git checkout -b origin/gh-pages
 git add .
 git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
 git pull origin main
 git push origin main
+git checkout -b main
 echo "success!"
