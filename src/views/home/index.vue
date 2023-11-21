@@ -86,9 +86,9 @@
 <script lang="ts" setup>
 import ButtonBar from "@/components/ButtonBar.vue"
 import {Search} from '@element-plus/icons-vue'
-import {getLinkList, storeLink, storeNote} from "@/apis"
+import {getLinkList, storeLink} from "@/apis"
 import {ref, reactive} from "vue"
-import {Link, Note, ResponseLinkList} from "@/types";
+import {Link, ResponseLinkList} from "@/types";
 import {ElMessage, FormInstance, FormRules} from "element-plus";
 
 // 链接
@@ -99,12 +99,9 @@ const tabLabel = (label: string) => {
   switch (label) {
     case 'account':
       return '账号';
-      break;
     case 'link':
       return '链接';
-      break;
     default:
-      break;
   }
 }
 
@@ -148,7 +145,7 @@ const linkForm = reactive<Link>({
   password: '',
 });
 const rules = reactive<FormRules<Link>>({
-  title: [
+  name: [
     {required: true, message: 'Please input Activity name', trigger: 'blur'},
     {min: 3, max: 64, message: 'Length should be 3 to 64', trigger: 'blur'},
   ],
@@ -170,7 +167,6 @@ const linkSubmit = async (form: FormInstance | undefined) => {
       });
       setInterval(() => {
         form.resetFields();
-        toggle.value = 'list';
       }, 1000)
     })
   })

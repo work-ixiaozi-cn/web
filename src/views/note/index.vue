@@ -12,12 +12,12 @@
       </el-table-column>
     </el-table>
     <div class="flex">
-      <el-cascader
-          v-model="cateIds"
-          :options="cates"
-          :props="{value: 'id', label: 'title'}"
-          @change="cateIdsChange"
-      />
+<!--      <el-cascader-->
+<!--          v-model="cateIds"-->
+<!--          :options="cates"-->
+<!--          :props="{value: 'id', label: 'title'}"-->
+<!--          @change="cateIdsChange"-->
+<!--      />-->
       <el-pagination
           :page-sizes="[10, 20, 30, 50]"
           :total="noteList?.total"

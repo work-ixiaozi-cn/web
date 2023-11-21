@@ -43,12 +43,12 @@
 
 <script lang="ts" setup>
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
-import {onBeforeMount, onBeforeUnmount, onMounted, reactive, ref, shallowRef, watch} from 'vue'
+import {onBeforeUnmount, onMounted, reactive, ref, shallowRef} from 'vue'
 // @ts-ignore
 import {Editor, Toolbar} from '@wangeditor/editor-for-vue'
 import {getCate, storeNote} from '@/apis';
 import {Cate, Note} from '@/types';
-import {CascaderValue, ElMessage, type FormInstance, type FormRules} from 'element-plus';
+import {ElMessage, type FormInstance, type FormRules} from 'element-plus';
 import _ from 'lodash'
 
 // 栏目
@@ -92,7 +92,6 @@ const noteSubmit = async (form: FormInstance | undefined) => {
       });
       setInterval(() => {
         form.resetFields();
-        toggle.value = 'list';
       }, 1000)
     })
   })
