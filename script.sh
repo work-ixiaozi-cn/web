@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file="public/$(hostname).json"
+file="$(hostname).json"
 token="CmH6FDe1DR7Gr5hycfiasjFlYa7yGKpp"
 
 cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd
@@ -23,6 +23,6 @@ fi
 # Step 3: 上传
 git add .
 git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
-git pull origin main
-git push origin main
+git pull origin script
+git push origin script
 echo "success!"
