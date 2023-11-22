@@ -15,8 +15,7 @@ jobs:
 
       - name: Merge JSON Files
         run: |
-          stun_json=$(jq -s '.reduce({}; . * .)' *.json)
-          echo "$stun_json" > stun.json
+          find . -name '*.json' -exec jq -s '{}' {} + > merged.json
 
       - name: Commit and Push to gh-pages
         run: |
