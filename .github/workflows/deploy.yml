@@ -3,10 +3,12 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main # or the branch you want to trigger the workflow on
+      - main
+      - script
 
 jobs:
-  build-and-deploy:
+  main-push:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -24,12 +26,45 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Run Script
+      - name: Clone gh-pages Branch To Dist
         run: |
-          git config pull.rebase false
-          git checkout -b script
-          ls -alh
-          git pull origin script
-          ls -alh
-          eval "cat script.yml"
+          git clone -b script --depth 1 "$(git remote get-url origin)" script
+          ls -alh ./script
 
+      - name: Merge JSON Files to Dist
+        run: |
+          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find ./script -maxdepth 1 -name '*.json') > dist/stun.json
+          ls -alh ./dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./dist
+          cname: 'yuufa.com'
+
+
+  script-push:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/script'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Clone gh-pages Branch To Dist
+        run: |
+          git clone  -b gh-pages --depth 1 "$(git remote get-url origin)" dist
+          ls -alh ./dist
+
+      - name: Merge JSON Files to Dist
+        run: |
+          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find . -maxdepth 1 -name '*.json') > dist/stun.json
+          ls -alh ./dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./dist
+          cname: 'yuufa.com'
