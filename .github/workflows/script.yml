@@ -13,23 +13,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Merge JSON Files
+      - name: Clone gh-pages Branch To Dist
         run: |
-          stun_json=$(jq -s '.reduce({}; . * .)' *.json)
-          echo "$stun_json" > stun.json
+          git clone  -b gh-pages --depth 1 "$(git remote get-url origin)" dist
+          ls -alh ./dist
 
-      - name: Commit and Push to gh-pages
+      - name: Merge JSON Files to Dist
         run: |
-          git config user.name "Your Name"
-          git config user.email "your.email@example.com"
-
-          git checkout -b gh-pages
-          cp stun.json .
-          git add stun.json
-          git commit -m "Merge and commit JSON files"
-          git push origin gh-pages
+          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find . -maxdepth 1 -name '*.json') > dist/stun.json
+          ls -alh ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./dist
+          cname: 'yuufa.com'
