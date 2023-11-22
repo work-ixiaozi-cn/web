@@ -33,7 +33,9 @@ jobs:
 
       - name: Merge JSON Files to Dist
         run: |
-          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find ./script -maxdepth 1 -name '*.json') > dist/stun.json
+          cd ./script
+          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find ./script -maxdepth 1 -name '*.json') > ../dist/stun.json
+          cd ..
           ls -alh ./dist
 
       - name: Deploy to GitHub Pages
