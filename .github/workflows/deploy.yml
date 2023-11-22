@@ -33,7 +33,7 @@ jobs:
 
       - name: Merge JSON Files to Dist
         run: |
-          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./script"; ""))[:-5]] = $i)' $(find ./script -maxdepth 1 -name '*.json') > dist/stun.json
+          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./script/"; ""))[:-5]] = $i)' $(find ./script -maxdepth 1 -name '*.json') > dist/stun.json
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
