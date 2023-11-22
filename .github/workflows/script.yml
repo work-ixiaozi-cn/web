@@ -20,8 +20,8 @@ jobs:
       - name: Merge JSON Files
         run: |
           find . -name '*.json'
-          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find . -name '*.json')
-          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find . -name '*.json') > dist/stun.json
+          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find . -maxdepth 1 -name '*.json')
+          jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find . -maxdepth 1 -name '*.json') > dist/stun.json
           ls -alh
           cd dist
           ls -alh
