@@ -32,8 +32,8 @@ jobs:
           git remote set-url origin "https://github-actions:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git"
           git push origin gh-pages
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./
+#      - name: Deploy to GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GH_TOKEN }}
+#          publish_dir: ./
