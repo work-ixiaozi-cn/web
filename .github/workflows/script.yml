@@ -16,6 +16,7 @@ jobs:
       - name: Merge JSON Files
         run: |
           find . -name '*.json' -exec jq -s add {} + > stun.json
+          ls -alh
 
       - name: Commit and Push to gh-pages
         run: |
@@ -23,6 +24,7 @@ jobs:
           git config user.email "your.email@example.com"
 
           git checkout -b gh-pages
+          ls -alh
           cp -f stun.json .
           git add stun.json
           git commit -m "Merge and commit JSON files"
