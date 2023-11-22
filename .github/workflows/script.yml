@@ -23,7 +23,7 @@ jobs:
           git config user.email "your.email@example.com"
 
           git checkout -b gh-pages
-          cp stun.json .
+          cp -f stun.json .
           git add stun.json
           git commit -m "Merge and commit JSON files"
           git push origin gh-pages
