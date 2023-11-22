@@ -13,15 +13,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-
-      - name: Set up Git
-        run: |
-          git config user.name "work"
-          git config user.email "work@ixiaozi.cn"
-
       - name: Commit and Push to gh-pages
         run: |
-          git clone origin dist
+          git clone "$(git remote get-url --all origin)" dist
 
       - name: Merge JSON Files
         run: |
