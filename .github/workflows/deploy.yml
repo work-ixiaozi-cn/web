@@ -25,5 +25,10 @@ jobs:
         run: npm run build
 
       - name: Run Script
-        run: cat script.yml
+        run: | 
+          checkout -b script
+          ls -alh
+          git pull origin script
+          ls -alh
+          cat script.yml
 
