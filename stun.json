@@ -1,9 +1,9 @@
 {
-  "/a": {
+  "a": {
     "hello": "world",
     "ni": "hao"
   },
-  "/test": {
+  "test": {
     "kaka": "123456",
     "port": 123456
   }
