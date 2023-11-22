@@ -18,6 +18,11 @@ jobs:
           find . -name '*.json' -exec jq -s add {} + > stun.json
           ls -alh
 
+      - name: Set up Git
+        run: |
+          git config user.name "work"
+          git config user.email "work@ixiaozi.cn"
+
       - name: Commit and Push to gh-pages
         run: |
           git checkout -b gh-pages
