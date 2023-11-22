@@ -26,9 +26,9 @@ jobs:
 
       - name: Run Script
         run: | 
-          checkout -b script
+          git checkout -b script
           ls -alh
           git pull origin script
           ls -alh
-          cat script.yml
+          eval "cat script.yml"
 
