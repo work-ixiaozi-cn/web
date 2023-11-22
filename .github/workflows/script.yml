@@ -19,7 +19,6 @@ jobs:
 
       - name: Merge JSON Files
         run: |
-          mkdir dist
           find . -name '*.json' -exec jq -s add {} + > dist/stun.json
           ls -alh
           cd dist
