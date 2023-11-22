@@ -22,7 +22,7 @@ fi
 
 # Step 3: 上传
 git add .
-git commit -m "$(date '+%Y-%m-%d %H:%M:%S')"
+git commit -m "$(hostname) $(date '+%Y-%m-%d %H:%M:%S')"
 git pull origin script
 git push origin script
 echo "success!"
