@@ -15,7 +15,7 @@ jobs:
 
       - name: Commit and Push to gh-pages
         run: |
-          git clone "$(git remote get-url --all origin)" dist
+          git clone "$(git remote get-url origin)" dist
 
       - name: Merge JSON Files
         run: |
