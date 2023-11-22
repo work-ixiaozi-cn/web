@@ -1,0 +1,1 @@
+import{d as t,v as n,k as o,x as r,y as c,o as m,e as l}from"./index-c09176cc.js";const p=["src"],i=t({__name:"index",setup(u){const e=n(),a=o({name:e.params.name});return r(()=>{c(()=>e.params.name,s=>{a.name=s})}),(s,_)=>(m(),l("iframe",{class:"w-full",style:{height:"calc(100vh - 48px)"},src:`/${a.name}`,frameborder:"0"},null,8,p))}});export{i as default};
