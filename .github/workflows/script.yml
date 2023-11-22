@@ -29,10 +29,12 @@ jobs:
           ls -alh
           git add stun.json
           git commit -m "Merge and commit JSON files"
+          git remote set-url origin "https://github-actions:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git"
           git push origin gh-pages
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
+          github_token: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 #      - name: Deploy to GitHub Pages
 #        uses: peaceiris/actions-gh-pages@v3
 #        with:
