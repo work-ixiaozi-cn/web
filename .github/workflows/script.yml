@@ -29,7 +29,7 @@ jobs:
           ls -alh
           git add stun.json
           git commit -m "Merge and commit JSON files"
-          git push https://${{ secrets.GH_TOKEN }}@github.com/work-ixiaozi-cn/web.git main:gh-pages
+          git push https://${{ secrets.GH_TOKEN }}@github.com/work-ixiaozi-cn/web.git gh-pages
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
