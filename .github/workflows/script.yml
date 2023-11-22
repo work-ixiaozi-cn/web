@@ -13,13 +13,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Commit and Push to gh-pages
+      - name: Clone gh-pages Branch To Dist
         run: |
           git clone  -b gh-pages --depth 1 "$(git remote get-url origin)" dist
+          ls -alh ./dist
 
-      - name: Merge JSON Files
+      - name: Merge JSON Files to Dist
         run: |
           jq -n 'reduce inputs as $i ({}; .[(input_filename | sub("\\./"; ""))[:-5]] = $i)' $(find . -maxdepth 1 -name '*.json') > dist/stun.json
+          ls -alh ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
