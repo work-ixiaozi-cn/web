@@ -1,1 +1,0 @@
-import{_ as o}from"./_plugin-vue_export-helper-c27b6911.js";import{o as e,e as s}from"./index-c09176cc.js";const c={},t={class:"w-full"};function n(r,_){return e(),s("div",t,"json")}const l=o(c,[["render",n]]);export{l as default};

@@ -1,1 +1,0 @@
-import{i as e}from"./axios-35611c58.js";const a=()=>e.get("/api/link"),i=t=>e.post("/api/link",t),o=t=>e.get("/api/note",{params:t}),n=t=>e.get(`/api/note/${t}`),g=()=>e.get("/api/cate");export{g as a,o as b,n as c,a as g,i as s};
