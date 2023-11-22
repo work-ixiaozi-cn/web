@@ -23,7 +23,7 @@ jobs:
           git config user.name "Your Name"
           git config user.email "your.email@example.com"
 
-          git checkout gh-pages
+          git checkout -b gh-pages
           ls -alh
           git add stun.json
           git commit -m "Merge and commit JSON files"
